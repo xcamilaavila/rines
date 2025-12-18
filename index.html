@@ -119,23 +119,26 @@
   };
 </script>
 
- <script type="module">
+ <script>
   const arBtn = document.getElementById("arBtn");
   const arViewer = document.getElementById("arViewer");
 
-  arBtn.addEventListener("click", async () => {
+  customElements.whenDefined("model-viewer").then(() => {
 
-    // 1️⃣ Verifica que AR esté disponible
-    if (!arViewer.canActivateAR) {
-      alert("AR no disponible en este dispositivo");
-      return;
-    }
+    arBtn.addEventListener("click", async () => {
 
-    // 2️⃣ Espera a que el componente esté listo
-    await arViewer.updateComplete;
+      // 👉 aquí luego pasarás colores / efectos
+      console.log("Config AR:", window.arConfig);
 
-    // 3️⃣ Activa AR
-    arViewer.activateAR();
+      try {
+        await arViewer.updateComplete;
+        arViewer.activateAR();
+      } catch (e) {
+        alert("No se pudo abrir AR en este dispositivo");
+        console.error(e);
+      }
+    });
+
   });
 </script>
 

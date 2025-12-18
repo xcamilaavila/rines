@@ -42,12 +42,17 @@
   id="arViewer"
   src="models/rin.glb"
   ar
-  ar-modes="scene-viewer"
+  ar-modes="scene-viewer quick-look"
   camera-controls
-  style="position:absolute;width:0;height:0;overflow:hidden;">
+  style="
+    position: fixed;
+    bottom: -1000px;
+    width: 300px;
+    height: 300px;
+    opacity: 0;
+    pointer-events: none;
+  ">
 </model-viewer>
-
-
 
 
     <main>
@@ -119,26 +124,21 @@
   };
 </script>
 
- <script>
+ <!-- 2️⃣ TU SCRIPT AR -->
+<script>
   const arBtn = document.getElementById("arBtn");
   const arViewer = document.getElementById("arViewer");
 
   customElements.whenDefined("model-viewer").then(() => {
-
     arBtn.addEventListener("click", async () => {
-
-      // 👉 aquí luego pasarás colores / efectos
-      console.log("Config AR:", window.arConfig);
-
       try {
         await arViewer.updateComplete;
         arViewer.activateAR();
       } catch (e) {
-        alert("No se pudo abrir AR en este dispositivo");
+        alert("AR no soportado en este dispositivo");
         console.error(e);
       }
     });
-
   });
 </script>
 

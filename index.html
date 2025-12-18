@@ -90,9 +90,8 @@
     </main>
   </div>
 
-  <script
-  src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
-  </script>
+ <script src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
 
 
 <script>
@@ -125,21 +124,20 @@
 
   arBtn.addEventListener("click", async () => {
 
-    const color = window.arConfig?.color;
-
-    if (color && window.arModelsByColor[color]) {
-      arViewer.src = window.arModelsByColor[color];
-    } else {
-      arViewer.src = "models/rin.glb";
+    // 1️⃣ Verifica que AR esté disponible
+    if (!arViewer.canActivateAR) {
+      alert("AR no disponible en este dispositivo");
+      return;
     }
 
-    // Espera a que cargue el modelo
+    // 2️⃣ Espera a que el componente esté listo
     await arViewer.updateComplete;
 
-    // ACTIVA AR (forma correcta)
+    // 3️⃣ Activa AR
     arViewer.activateAR();
   });
 </script>
+
 
 
 

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Personaliza tu Rin</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Anton&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="style.css" />
+
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.module.js"
+    }
+  }
+  </script>
+
+  <script type="module" src="script.js"></script>
+</head>
+
+
+<body>
+  <div class="app">
+   <!-- SOLO LOGO -->
+  <div class="top-image">
+    <img src="models/imagenes/logo-reparllantashdsmall.png" alt="Logo" class="logo">
+  </div>
+
+  <!-- BOTÓN AR -->
+  <button id="arBtn" class="ar-button">
+    Visualizar rin en tu carro (AR)
+  </button>
+
+  <!-- VISOR AR (oculto) -->
+<model-viewer
+  id="arViewer"
+  src="models/rin.glb"
+  ar
+  ar-modes="scene-viewer quick-look"
+  camera-controls
+  style="width:1px;height:1px;opacity:0;">
+</model-viewer>
+
+
+
+    <main>
+      <div id="viewer"></div>
+
+<!-- Botones de colores -->
+    <div class="controls-title">Colores disponibles</div>
+
+      <div class="controls">
+        
+        <button data-finish="negro">Negro</button>
+        <button data-finish="dorado">Dorado</button>
+        <button data-finish="gris_claro">Gris claro</button>
+        <button data-finish="aguamarina">Aguamarina</button>
+        <button data-finish="dorado_verdoso">dorado_verdoso</button>
+        <button data-finish="gris_2">gris 2</button>
+        <button data-finish="gris_5">gris 5</button>
+        <button data-finish="gris_7">gris 7</button>
+        <button data-finish="gris_negro">gris negro</button>
+        <button data-finish="gris_4">gris 4</button>
+        <button data-finish="gris_azulado">gris azulado</button>
+        <button data-finish="naranja">naranja</button>
+        <button data-finish="gris_rata">gris rata</button>
+        <button data-finish="gris_oscuro">gris oscuro</button>
+        <button data-finish="gris_3">gris 3</button>
+        <button data-finish="gris_6">gris 6</button>
+        <button data-finish="gris_8">gris 8</button>
+        
+      </div>
+
+    <!-- Boton de efecto -->
+    <div class="controls-title">Efectos disponibles</div>
+    <p class="hint">Doble click para diamantado total</p>
+
+
+    <div class="controls effects">
+      <button id="diamondBtn">Diamantado</button>
+      <button id="clearBtn">Limpiar</button>
+    </div>
+
+    </main>
+  </div>
+
+  <script
+  src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js">
+  </script>
+
+
+<script>
+  // SOLO PARA AR
+  window.arModelsByColor = {
+  negro: "models/rin_negro.glb",
+  dorado: "models/rin_dorado.glb",
+  gris_claro: "models/rin_gris_claro.glb",
+  aguamarina: "models/rin_aguamarina.glb",
+  dorado_verdoso: "models/rin_dorado_verdoso.glb",
+  gris_2: "models/rin_gris_2.glb",
+  gris_5: "models/rin_gris_5.glb",
+  gris_7: "models/rin_gris_7.glb",
+  gris_negro: "models/rin_gris_negro.glb",
+  gris_4: "models/rin_gris_4.glb",
+  gris_azulado: "models/rin_gris_azulado.glb",
+  naranja: "models/rin_naranja.glb",
+  gris_rata: "models/rin_gris_rata.glb",
+  gris_oscuro: "models/rin_gris_oscuro.glb",
+  gris_3: "models/rin_gris_3.glb",
+  gris_6: "models/rin_gris_6.glb",
+  gris_8: "models/rin_gris_8.glb"
+
+  };
+</script>
+
+ <script type="module">
+  const arBtn = document.getElementById("arBtn");
+  const arViewer = document.getElementById("arViewer");
+
+  arBtn.addEventListener("click", async () => {
+
+    const color = window.arConfig?.color;
+
+    if (color && window.arModelsByColor[color]) {
+      arViewer.src = window.arModelsByColor[color];
+    } else {
+      arViewer.src = "models/rin.glb";
+    }
+
+    // Espera a que cargue el modelo
+    await arViewer.updateComplete;
+
+    // ACTIVA AR (forma correcta)
+    arViewer.activateAR();
+  });
+</script>
+
+
+
+</body>
+</html>

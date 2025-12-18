@@ -130,15 +130,30 @@
   const arViewer = document.getElementById("arViewer");
 
   customElements.whenDefined("model-viewer").then(() => {
+
     arBtn.addEventListener("click", async () => {
+
+      // 🔹 Color elegido
+      const selectedColor = window.arConfig?.color;
+
+      // 🔹 Si hay color, cambiamos el modelo
+      if (selectedColor && window.arModelsByColor[selectedColor]) {
+        arViewer.src = window.arModelsByColor[selectedColor];
+      } else {
+        // fallback
+        arViewer.src = "models/rin.glb";
+      }
+
       try {
         await arViewer.updateComplete;
         arViewer.activateAR();
       } catch (e) {
-        alert("AR no soportado en este dispositivo");
+        alert("No se pudo abrir AR en este dispositivo");
         console.error(e);
       }
+
     });
+
   });
 </script>
 

@@ -133,22 +133,28 @@
 
     arBtn.addEventListener("click", async () => {
 
-      // 🔹 Color elegido
       const selectedColor = window.arConfig?.color;
+      let modelSrc = "models/rin.glb";
 
-      // 🔹 Si hay color, cambiamos el modelo
       if (selectedColor && window.arModelsByColor[selectedColor]) {
-        arViewer.src = window.arModelsByColor[selectedColor];
-      } else {
-        // fallback
-        arViewer.src = "models/rin.glb";
+        modelSrc = window.arModelsByColor[selectedColor];
       }
 
+      console.log("AR model:", modelSrc);
+
+      // 🔴 CAMBIAMOS EL SRC EXPLÍCITAMENTE
+      arViewer.setAttribute("src", modelSrc);
+
+      // 🔴 ESPERAMOS A QUE CARGUE EL MODELO
+      await new Promise((resolve) => {
+        arViewer.addEventListener("load", resolve, { once: true });
+      });
+
+      // 🔴 AHORA SÍ, ABRIMOS AR
       try {
-        await arViewer.updateComplete;
         arViewer.activateAR();
       } catch (e) {
-        alert("No se pudo abrir AR en este dispositivo");
+        alert("No se pudo abrir AR");
         console.error(e);
       }
 
@@ -156,6 +162,7 @@
 
   });
 </script>
+
 
 
 

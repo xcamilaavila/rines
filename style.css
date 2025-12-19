@@ -17,6 +17,37 @@ body {
   z-index: 1;
 }
 
+/* CONTENEDOR DE LOS LOGOS */
+.top-image {
+  width: 100%;
+  min-height: 160px;        /* un poco más alto */
+  padding-top: 45px;        /* controla qué tan arriba empiezan */
+  padding-bottom: 30px;
+
+  background: #000;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* 👈 CLAVE */
+
+  gap: 6px;
+}
+
+/* LOGO PRINCIPAL */
+.logo {
+  width: 300px;    /* grande */
+  height: auto;
+}
+
+/* LOGO SECUNDARIO */
+.logo-secondary {
+  width: 55px;     /* más pequeño */
+  height: auto;
+
+  opacity: 0.85;
+}
+
 /*PARA EL LOGO DIAMANTADOS CALI*/
 /* Marca de agua */
 body::before {
@@ -118,11 +149,6 @@ button {
   justify-content: center;  /* CENTRA HORIZONTAL */
 }
 
-/* LOGO */
-.logo {
-  max-height: 70%;
-  width: auto;
-}
 
 /*Para el boton de la camara*/
 .ar-button {

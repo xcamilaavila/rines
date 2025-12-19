@@ -81,7 +81,7 @@ const finishes = {
   gris_azulado: { color: "#5f6769", metalness: 0.25, roughness: 0.1 },
   naranja: { color: "#f33d14", metalness: 0.25, roughness: 0.1 },
   gris_rata: { color: "#6f6e6a", metalness: 0.35, roughness: 0.2 },
-  gris_oscuro: { color: "#bdbcbcff", metalness: 0.9, roughness: 0.1 },
+  gris_oscuro: { color: "#3c3b3b", metalness: 0.15, roughness: 0.0 },
   gris_3: { color: "#474646", metalness: 0.1, roughness: 0.05 },
   gris_8: { color: "#888888", metalness: 0.4, roughness: 0.1 }
 };

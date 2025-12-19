@@ -6,19 +6,37 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  background: #111;
+  background: #0b0b0b;
   color: white;
+  position: relative;
 }
 
 .app {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  z-index: 1;
+}
+
+/*PARA EL LOGO DIAMANTADOS CALI*/
+/* Marca de agua */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+
+  background-image: url("models/imagenes/logo-diamantado.png");
+  background-repeat: repeat;
+  background-size: 140px;
+  background-position: center;
+
+  opacity: 0.05; /* clave para que no moleste */
+  pointer-events: none; /* 👈 no bloquea botones */
+  z-index: 0;
 }
 
 header {
   text-align: center;
-  padding: 1rem;
+  padding: 1.5rem 1rem;
 }
 
 main {
@@ -31,9 +49,11 @@ main {
   flex: 1;
   width: 100%;
   min-height: 400px;
+  
 }
 
 .controls {
+  
   display: flex;
   gap: 12px;
   overflow-x: auto;
@@ -56,6 +76,7 @@ main {
 }
 
 .controls button {
+  z-index: 1;
   min-width: 70px;
   height: 70px;
   border-radius: 12px;
@@ -78,6 +99,7 @@ main {
 
 
 button {
+  z-index: 1;
   padding: 0.7rem 1.2rem;
   border: none;
   border-radius: 8px;
@@ -104,18 +126,39 @@ button {
 
 /*Para el boton de la camara*/
 .ar-button {
+  z-index: 1;
   font-family: 'Poppins', sans-serif;
   margin: 16px auto;
   padding: 14px 22px;
-  font-size: 15px;
-  border-radius: 12px;
-  background: #ff8c00;
-  color: white;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-transform: uppercase;
+
+  border-radius: 14px;
+  background: #ff8c00; /* NARANJA ORIGINAL */
+  color: #fff;
+
   border: none;
   cursor: pointer;
   display: block;
-  font-weight: 600;
+
+  box-shadow:
+    inset 4px 4px 8px rgba(0, 0, 0, 0.25),
+    inset -4px -4px 8px rgba(255, 0, 0, 0.25),
+    0 6px 12px rgba(0, 0, 0, 0.35);
+
+  transition:
+    box-shadow 0.2s ease,
+    transform 0.15s ease;
 }
+.ar-button:active {
+  transform: scale(0.96);
+  box-shadow:
+    inset 6px 6px 10px rgba(0, 0, 0, 0.35),
+    inset -1px -1px 3px rgba(255, 255, 255, 0.2);
+}
+
 
 /*Para el colores disponibles*/
 .controls-title {
@@ -124,93 +167,446 @@ button {
   font-weight: 500;
   color: #ffffff;
   margin: 12px 0 2px;
+  opacity: 0.8;
 }
+
+.controls-title::after {
+  content: "";
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #ff8c00;
+  margin: 6px auto 0;
+  border-radius: 2px;
+}
+
 
 
 /* COLORES DE BOTONES */
 .controls button[data-finish="negro"] {
+  
   background: #111;
   color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 70px;
+  height: 70px;
+
+  border-radius: 50%; /* BOTÓN REDONDO */
+  border: 1px solid rgba(0, 0, 0, 0.15);
+
+  font-size: 11px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  /* Relieve simple (ligero para móvil) */
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.25),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.4);
 }
 
 .controls button[data-finish="dorado"] {
   background: #f8d666;
   color: #111;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 70px;
+  height: 70px;
+
+  border-radius: 50%; /* BOTÓN REDONDO */
+  border: 1px solid rgba(0, 0, 0, 0.15);
+
+  font-size: 11px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  /* Relieve simple (ligero para móvil) */
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.25),
+    inset 0 -1px 2px rgba(255, 0, 0, 0.4);
 }
 
 .controls button[data-finish="gris_claro"] {
   background: #888888;
   color: #111;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 70px;
+  height: 70px;
+
+  border-radius: 50%; /* BOTÓN REDONDO */
+  border: 1px solid rgba(0, 0, 0, 0.15);
+
+  font-size: 11px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  /* Relieve simple (ligero para móvil) */
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.25),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.4);
 }
 
 .controls button[data-finish="aguamarina"] {
   background: #288b79;
   color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 70px;
+  height: 70px;
+
+  border-radius: 50%; /* BOTÓN REDONDO */
+  border: 1px solid rgba(0, 0, 0, 0.15);
+
+  font-size: 11px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  /* Relieve simple (ligero para móvil) */
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.25),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.4);
 }
 
 .controls button[data-finish="dorado_verdoso"] {
   background: #e3d23a;
   color: #111;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 70px;
+  height: 70px;
+
+  border-radius: 50%; /*BOTÓN REDONDO */
+  border: 1px solid rgba(0, 0, 0, 0.15);
+
+  font-size: 11px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  /* Relieve simple (ligero para móvil) */
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.25),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.4);
 }
 
 .controls button[data-finish="gris_2"] {
   background: #525050;
   color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 70px;
+  height: 70px;
+
+  border-radius: 50%; /* BOTÓN REDONDO */
+  border: 1px solid rgba(0, 0, 0, 0.15);
+
+  font-size: 11px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  /* Relieve simple (ligero para móvil) */
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.25),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.4);
 }
 
 .controls button[data-finish="gris_5"] {
   background: #3e3d3d;
   color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 70px;
+  height: 70px;
+
+  border-radius: 50%; /* BOTÓN REDONDO */
+  border: 1px solid rgba(0, 0, 0, 0.15);
+
+  font-size: 11px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  /* Relieve simple (ligero para móvil) */
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.25),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.4);
 }
 
 .controls button[data-finish="gris_7"] {
   background: #726e6e;
   color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 70px;
+  height: 70px;
+
+  border-radius: 50%; /* BOTÓN REDONDO */
+  border: 1px solid rgba(0, 0, 0, 0.15);
+
+  font-size: 11px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  /* Relieve simple (ligero para móvil) */
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.25),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.4);
 }
 
 .controls button[data-finish="gris_negro"] {
   background: #3b3b3b;
   color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 70px;
+  height: 70px;
+
+  border-radius: 50%; /* BOTÓN REDONDO */
+  border: 1px solid rgba(0, 0, 0, 0.15);
+
+  font-size: 11px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  /* Relieve simple (ligero para móvil) */
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.25),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.4);
 }
 
 .controls button[data-finish="gris_4"] {
   background: #888888;
   color: #111;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 70px;
+  height: 70px;
+
+  border-radius: 50%; /* BOTÓN REDONDO */
+  border: 1px solid rgba(0, 0, 0, 0.15);
+
+  font-size: 11px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  /* Relieve simple (ligero para móvil) */
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.25),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.4);
 }
 
 .controls button[data-finish="gris_azulado"] {
   background: #5f6769;
   color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 70px;
+  height: 70px;
+
+  border-radius: 50%; /* BOTÓN REDONDO */
+  border: 1px solid rgba(0, 0, 0, 0.15);
+
+  font-size: 11px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  /* Relieve simple (ligero para móvil) */
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.25),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.4);
 }
 
 .controls button[data-finish="naranja"] {
   background: #f33d14;
   color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 70px;
+  height: 70px;
+
+  border-radius: 50%; /* BOTÓN REDONDO */
+  border: 1px solid rgba(0, 0, 0, 0.15);
+
+  font-size: 11px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  /* Relieve simple (ligero para móvil) */
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.25),
+    inset 0 -1px 2px rgba(255, 242, 0, 0.4);
 }
 
 .controls button[data-finish="gris_rata"] {
   background: #6f6e6a;
   color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 70px;
+  height: 70px;
+
+  border-radius: 50%; /* BOTÓN REDONDO */
+  border: 1px solid rgba(0, 0, 0, 0.15);
+
+  font-size: 11px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  /* Relieve simple (ligero para móvil) */
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.25),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.4);
 }
 
 .controls button[data-finish="gris_oscuro"] {
   background: #bdbcbc;
   color: #111;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 70px;
+  height: 70px;
+
+  border-radius: 50%; /* BOTÓN REDONDO */
+  border: 1px solid rgba(0, 0, 0, 0.15);
+
+  font-size: 11px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  /* Relieve simple (ligero para móvil) */
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.25),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.4);
 }
 
 .controls button[data-finish="gris_3"] {
   background: #474646;
   color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 70px;
+  height: 70px;
+
+  border-radius: 50%; /* BOTÓN REDONDO */
+  border: 1px solid rgba(0, 0, 0, 0.15);
+
+  font-size: 11px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  /* Relieve simple (ligero para móvil) */
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.25),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.4);
 }
 
 .controls button[data-finish="gris_6"] {
   background: #6b6a66;
   color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 70px;
+  height: 70px;
+
+  border-radius: 50%; /* BOTÓN REDONDO */
+  border: 1px solid rgba(0, 0, 0, 0.15);
+
+  font-size: 11px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  /* Relieve simple (ligero para móvil) */
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.25),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.4);
 }
 
 .controls button[data-finish="gris_8"] {
   background: #888888;
   color: #111;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 70px;
+  height: 70px;
+
+  border-radius: 50%; /* BOTÓN REDONDO */
+  border: 1px solid rgba(0, 0, 0, 0.15);
+
+  font-size: 11px;
+  font-weight: 500;
+
+  cursor: pointer;
+
+  /* Relieve simple (ligero para móvil) */
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.25),
+    inset 0 -1px 2px rgba(255, 255, 255, 0.4);
 }
 
 /*========Para los botones de efecto y limpio==========*/
@@ -218,22 +614,46 @@ button {
 .effects button {
   background: #1c1c1c;
   color: #fff;
-  border: 2px solid #ff8c00;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 70px;
+  height: 70px;
+
+  border-radius: 50%; /* BOTÓN REDONDO */
+  border: 1px solid rgba(0, 0, 0, 0.15);
+
+  font-size: 11px;
   font-weight: 500;
+
+  cursor: pointer;
+
+  /* Relieve simple (ligero para móvil) */
+  box-shadow:
+    inset 0 1px 2px rgba(0, 0, 0, 0.25),
+    inset 0 -1px 2px rgba(155, 152, 152, 0.4);
 }
 
 /* BOTÓN LIMPIAR */
 #clearBtn {
   background: #444;
   border-color: #999;
+
+  
 }
 
 /*TEXTO DE DOBLE CLICK*/
 
 .hint{
   text-align: center;
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 500;
   color: #ffffff;
   margin: 12px 0 1px;
+  opacity: 0.6;
 }
+
+/*LOGO DE DIAMANTADOS CALI*/
+

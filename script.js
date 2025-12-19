@@ -76,7 +76,7 @@ const finishes = {
   gris_6: { color: "#6b6a66", metalness: 0.1, roughness: 0.0 },
   gris_5: { color: "#3e3d3d", metalness: 0.1, roughness: 0.0 },
   gris_7: { color: "#726e6e", metalness: 0.3, roughness: 0.15 },
-  gris_negro: { color: "#3b3b3bff", metalness: 0.95, roughness: 0.15 },
+  gris_negro: { color: "#2b2b2b", metalness: 0.3, roughness: 0.0 },
   gris_4: { color: "#888888", metalness: 0.2, roughness: 0.0 },
   gris_azulado: { color: "#5f6769", metalness: 0.25, roughness: 0.1 },
   naranja: { color: "#f33d14", metalness: 0.25, roughness: 0.1 },

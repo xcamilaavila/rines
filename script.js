@@ -106,21 +106,46 @@ const effects = {
 let rin;
 let originalMaterials = [];
 
+let currentModelType = "rin1"; // modelo actual
+
+const MODELS = {
+  rin1: "models/rin.glb",          // TU MODELO ACTUAL
+  rin2: "models/rin2.glb"       // 👈 CAMBIA ESTE NOMBRE
+};
+
+
 const loader = new GLTFLoader();
-loader.load("models/rin.glb", (gltf) => {
-  rin = gltf.scene;
+function loadRinModel(path) {
+  if (rin) {
+    scene.remove(rin);
+    rin.traverse(child => {
+      if (child.isMesh) {
+        child.geometry.dispose();
+        child.material.dispose();
+      }
+    });
+    rin = null;
+    originalMaterials = [];
+  }
 
-  rin.traverse((child) => {
-    if (child.isMesh) {
-      originalMaterials.push({
-        mesh: child,
-        material: child.material.clone()
-      });
-    }
+  loader.load(path, (gltf) => {
+    rin = gltf.scene;
+
+    rin.traverse((child) => {
+      if (child.isMesh) {
+        originalMaterials.push({
+          mesh: child,
+          material: child.material.clone()
+        });
+      }
+    });
+
+    scene.add(rin);
   });
+}
 
-  scene.add(rin);
-});
+loadRinModel(MODELS.rin1);
+
 
 /*Esto es lo que permite:color solo, efecto solo,color + efecto,reset total*/
 
@@ -327,3 +352,21 @@ window.finishes = finishes;
 
 
 
+//========PARA EL CAMBIO DE RINES EN EL BOTON
+const changeRimBtn = document.getElementById("changeRimBtn");
+
+changeRimBtn.addEventListener("click", () => {
+
+  currentModelType = currentModelType === "rin1" ? "rin2" : "rin1";
+
+  // reset visual
+  currentColor = null;
+  currentEffect = null;
+  diamondMode = "partial";
+
+  arConfig.color = null;
+  arConfig.diamantado = false;
+  arConfig.diamondMode = "partial";
+
+  loadRinModel(MODELS[currentModelType]);
+});

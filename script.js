@@ -374,4 +374,6 @@ changeRimBtn.addEventListener("click", () => {
   arConfig.diamondMode = "partial";
 
   loadRinModel(MODELS[currentModelType]);
+  window.arConfig.rin = currentModelType;
+
 });

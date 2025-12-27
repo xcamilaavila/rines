@@ -152,8 +152,8 @@
 
   let modelSrc = model || "models/rin.glb";
 
-  // Detectar qué rin está activo
-  const rinKey = model.includes("rin2") ? "rin2" : "rin1";
+  const rinKey = window.arConfig.rin || "rin1";
+
 
 // Si hay color y existe versión para ese rin
   if (

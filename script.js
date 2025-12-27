@@ -256,7 +256,7 @@ diamondBtn.addEventListener("click", () => {
     applyMaterialState();
 
   } else {
-    // 👇 ESPERAMOS A VER SI ES DOBLE CLICK
+    //ESPERAMOS A VER SI ES DOBLE CLICK
     clickTimeout = setTimeout(() => {
       diamondMode = "partial";
 

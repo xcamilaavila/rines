@@ -152,10 +152,18 @@
 
   let modelSrc = model || "models/rin.glb";
 
-  // Si hay color y existe versión por color, la usamos
-  if (color && window.arModelsByColor[color]) {
-    modelSrc = window.arModelsByColor[color];
+  // Detectar qué rin está activo
+  const rinKey = model.includes("rin2") ? "rin2" : "rin1";
+
+// Si hay color y existe versión para ese rin
+  if (
+    color &&
+    window.arModelsByColor[rinKey] &&
+    window.arModelsByColor[rinKey][color]
+  ) {
+    modelSrc = window.arModelsByColor[rinKey][color];
   }
+
 
   console.log("AR model:", modelSrc);
 
@@ -174,9 +182,6 @@
 
   });
 </script>
-
-
-
 
 
 </body>

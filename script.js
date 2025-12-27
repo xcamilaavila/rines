@@ -373,7 +373,7 @@ changeRimBtn.addEventListener("click", () => {
   arConfig.diamantado = false;
   arConfig.diamondMode = "partial";
 
-  // MUY IMPORTANTE
+  // Muy importante para que el ar sepa cual rin estoy utilizando con su respectivo color
   arConfig.rin = currentModelType;
   arConfig.model = MODELS[currentModelType];
 

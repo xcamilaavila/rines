@@ -166,10 +166,9 @@
 
   const { model, color } = window.arConfig || {};
 
-  let modelSrc = model || "models/rin.glb";
+  let modelSrc = window.arConfig.model;
 
-  const rinKey = window.arConfig.rin || "rin1";
-
+  const rinKey = window.arConfig.rin;
 
 // Si hay color y existe versión para ese rin
   if (

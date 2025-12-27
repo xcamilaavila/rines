@@ -119,7 +119,8 @@ let arConfig = {
   model: "models/rin.glb",
   color: null,
   diamantado: false,
-  diamondMode: "partial"
+  diamondMode: "partial",
+   rin: "rin1" // 👈 MUY IMPORTANTE
 };
 
 window.arConfig = arConfig;

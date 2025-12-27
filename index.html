@@ -135,40 +135,38 @@
   };
 </script>
 
- <!-- 2️⃣ TU SCRIPT AR -->
+ <!-- TU SCRIPT AR -->
 <script>
   const arBtn = document.getElementById("arBtn");
   const arViewer = document.getElementById("arViewer");
 
   customElements.whenDefined("model-viewer").then(() => {
 
-    arBtn.addEventListener("click", async () => {
+  arBtn.addEventListener("click", async () => {
 
-      const selectedColor = window.arConfig?.color;
-      let modelSrc = "models/rin.glb";
+  const { model, color } = window.arConfig || {};
 
-      if (selectedColor && window.arModelsByColor[selectedColor]) {
-        modelSrc = window.arModelsByColor[selectedColor];
-      }
+  let modelSrc = model || "models/rin.glb";
 
-      console.log("AR model:", modelSrc);
+  // Si hay color y existe versión por color, la usamos
+  if (color && window.arModelsByColor[color]) {
+    modelSrc = window.arModelsByColor[color];
+  }
 
-      // 1️⃣ Cambiamos el modelo
-      arViewer.src = modelSrc;
+  console.log("AR model:", modelSrc);
 
-      // 2️⃣ Forzamos repaint + pequeño delay
-      await new Promise(requestAnimationFrame);
-      await new Promise(res => setTimeout(res, 150));
+  arViewer.src = modelSrc;
 
-      // 3️⃣ Abrimos AR
-      try {
-        arViewer.activateAR();
-      } catch (e) {
-        alert("No se pudo abrir AR");
-        console.error(e);
-      }
+  await new Promise(requestAnimationFrame);
+  await new Promise(res => setTimeout(res, 150));
 
-    });
+  try {
+    arViewer.activateAR();
+  } catch (e) {
+    alert("No se pudo abrir AR");
+    console.error(e);
+  }
+  });
 
   });
 </script>

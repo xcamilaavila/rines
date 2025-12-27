@@ -113,9 +113,22 @@ const MODELS = {
   rin2: "models/rin2.glb"       // 👈 CAMBIA ESTE NOMBRE
 };
 
+//=========ESTO VA A SERVIR PARA EL AR Y LOS COLORES
+
+let arConfig = {
+  model: "models/rin.glb",
+  color: null,
+  diamantado: false,
+  diamondMode: "partial"
+};
+
+window.arConfig = arConfig;
 
 const loader = new GLTFLoader();
 function loadRinModel(path) {
+
+  //avisamos al AR qué modelo está activo
+  arConfig.model = path;
   if (rin) {
     scene.remove(rin);
     rin.traverse(child => {
@@ -151,14 +164,6 @@ loadRinModel(MODELS.rin1);
 
 let currentColor = null;     // color seleccionado
 let currentEffect = null;   // efecto activo
-
-//=========ESTO VA A SERVIR PARA EL AR Y LOS COLORES
-
-let arConfig = {
-  color: null,
-  diamantado: false,
-  diamondMode: "partial"
-};
 
 
 // ================= APLICAR COLOR (SIN ACUMULAR) =================
